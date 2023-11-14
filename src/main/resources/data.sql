@@ -1,0 +1,2 @@
+INSERT INTO tbl_users (name, last_Name, email, password) VALUES ('Juan', 'Perez', 'juan@gmail.com', '1234');
+INSERT INTO tbl_administrators (id, departament) VALUES (LAST_INSERT_ID(), 'administracion');
