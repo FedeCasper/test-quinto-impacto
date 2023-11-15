@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter @Setter
+@Table(name = "tbl_profesors")
 public class Profesor extends User {
 
     private String course;
