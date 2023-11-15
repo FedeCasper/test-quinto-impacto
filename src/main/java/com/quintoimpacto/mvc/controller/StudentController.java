@@ -31,10 +31,6 @@ public class StudentController {
     public ResponseEntity <Student> updateStudent(@PathVariable("id") Long id, @RequestBody Student student){
         student.setId(id);
         Student updatedStudent = studentService.updateStudent(student);
-        if(updatedStudent == null){
-            return ResponseEntity.notFound().build();
-        }else {
-            return ResponseEntity.ok(updatedStudent);
-        }
+        return updatedStudent != null ? ResponseEntity.ok(updatedStudent) : ResponseEntity.notFound().build();
     }
 }
