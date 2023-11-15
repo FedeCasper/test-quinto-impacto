@@ -11,6 +11,8 @@ public interface StudentService {
 
     Student findStudentById(Long id);
 
+    Student createStudent(UserDto userDto);
+
     Student save(Student student);
 
     Student deleteStudentById(Long id);

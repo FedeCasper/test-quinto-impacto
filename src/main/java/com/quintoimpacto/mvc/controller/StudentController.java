@@ -21,5 +21,10 @@ public class StudentController {
         return studentService.findAll();
     }
 
+    @PostMapping("/students")
+    public ResponseEntity<Student> createStudent( @RequestBody UserDto userDto) {
+        Student newStudent = studentService.createStudent(userDto);
+        return ResponseEntity.ok(newStudent);
+    }
 
 }
