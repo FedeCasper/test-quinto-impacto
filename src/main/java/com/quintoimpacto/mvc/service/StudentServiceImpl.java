@@ -71,8 +71,6 @@ public class StudentServiceImpl implements StudentService {
         foundStudent.setEmail(student.getEmail());
         foundStudent.setPassword(student.getPassword());
         foundStudent.setCourse(student.getCourse());
-        foundStudent.setStatus(student.getStatus());
-        foundStudent.setCreateAt(student.getCreateAt());
         return studentRepository.save(foundStudent);
     }
 }

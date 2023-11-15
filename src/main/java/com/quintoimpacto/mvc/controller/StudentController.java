@@ -10,21 +10,31 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/students")
 public class StudentController {
 
     @Autowired
     private StudentService studentService;
 
-    @GetMapping("/students")
+    @GetMapping
     public List<Student> getAllStudents() {
         return studentService.findAll();
     }
 
-    @PostMapping("/students")
+    @PostMapping
     public ResponseEntity<Student> createStudent( @RequestBody UserDto userDto) {
         Student newStudent = studentService.createStudent(userDto);
         return ResponseEntity.ok(newStudent);
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity <Student> updateStudent(@PathVariable("id") Long id, @RequestBody Student student){
+        student.setId(id);
+        Student updatedStudent = studentService.updateStudent(student);
+        if(updatedStudent == null){
+            return ResponseEntity.notFound().build();
+        }else {
+            return ResponseEntity.ok(updatedStudent);
+        }
+    }
 }
