@@ -3,8 +3,8 @@ package com.quintoimpacto.mvc.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Getter @Setter
@@ -12,13 +12,20 @@ import javax.persistence.Table;
 public class Administrator extends User {
 
     private String departament;
+    private String status;
+
+    @Column(name = "create_at")
+    @Temporal(TemporalType.DATE)
+    private Date createAt;
 
     public Administrator() {
 
     }
 
-    public Administrator(String name, String lastName, String email, String password, String departament) {
+    public Administrator(String name, String lastName, String email, String password, String departament, String status, Date createAt) {
         super(name, lastName, email, password);
         this.departament = departament;
+        this.status = status;
+        this.createAt = createAt;
     }
 }

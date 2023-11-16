@@ -4,7 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -17,6 +19,9 @@ public class Student extends User{
     @Column(name = "create_at")
     @Temporal(TemporalType.DATE)
     private Date createAt;
+
+    @OneToMany(mappedBy = "student")
+    private List<UserCourse> userCourses = new ArrayList<>();
 
     public Student() {
 
