@@ -17,6 +17,7 @@ public class Course {
 
     private String name;
     private String shift;
+    private String status;
 
     @OneToMany(mappedBy = "course")
     private List<UserCourse> userCourses = new ArrayList<>();
@@ -25,9 +26,10 @@ public class Course {
 
     }
 
-    public Course(String name, String shift) {
+    public Course(String name, String shift, String status) {
         this.name = name;
         this.shift = shift;
+        this.status = status;
     }
 
 }
