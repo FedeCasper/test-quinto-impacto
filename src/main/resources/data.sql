@@ -6,3 +6,7 @@ INSERT INTO tbl_professors (id, course, status, create_At) VALUES (2, 'Javascrip
 
 INSERT INTO tbl_users (name, last_Name, email, password) VALUES ('Ignacio', 'Lillo', 'ignacio@gmail.com', '1234');
 INSERT INTO tbl_students (id, course, status, create_At) VALUES (3, 'Java', 'active', TIMESTAMP '2023-11-15 12:30:00');
+
+INSERT INTO tbl_courses(name, shift) VALUES ('Full Stack Java', 'Morning');
+INSERT INTO tbl_courses(name, shift) VALUES ('Full Stack MERN', 'Afternoon');
+INSERT INTO tbl_courses(name, shift) VALUES ('Web Developer', 'Night');
