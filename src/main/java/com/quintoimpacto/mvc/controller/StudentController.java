@@ -17,8 +17,9 @@ public class StudentController {
     private StudentService studentService;
 
     @GetMapping
-    public List<Student> getAllStudents() {
-        return studentService.findAll();
+    public ResponseEntity<List<Student>> getAllStudents() {
+        List<Student> studentList =  studentService.findAll();
+        return studentList != null ? ResponseEntity.ok(studentList) : ResponseEntity.notFound().build();
     }
 
     @PostMapping
