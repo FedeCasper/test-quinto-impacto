@@ -29,4 +29,11 @@ public class AdministratorController {
         return ResponseEntity.ok(newAdministrator);
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity <Administrator> updateAdministrator(@PathVariable("id") Long id, @RequestBody Administrator administrator){
+        administrator.setId(id);
+        Administrator updatedAdministrator = administratorService.updateAdministrator(administrator);
+        return updatedAdministrator != null ? ResponseEntity.ok(updatedAdministrator) : ResponseEntity.notFound().build();
+    }
+
 }
