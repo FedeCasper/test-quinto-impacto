@@ -1,9 +1,10 @@
-package com.quintoimpacto.mvc.service;
+package com.quintoimpacto.mvc.service.administrator;
 
 import com.quintoimpacto.mvc.dto.UserDto;
 import com.quintoimpacto.mvc.model.Administrator;
 import com.quintoimpacto.mvc.model.User;
 import com.quintoimpacto.mvc.repository.AdministratorRepository;
+import com.quintoimpacto.mvc.service.administrator.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class AdministratorServiceImpl implements AdministratorService{
+public class AdministratorServiceImpl implements AdministratorService {
 
     @Autowired
     private AdministratorRepository administratorRepository;

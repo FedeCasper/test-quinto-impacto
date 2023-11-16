@@ -2,8 +2,7 @@ package com.quintoimpacto.mvc.controller;
 
 import com.quintoimpacto.mvc.dto.UserDto;
 import com.quintoimpacto.mvc.model.Professor;
-import com.quintoimpacto.mvc.model.Student;
-import com.quintoimpacto.mvc.service.ProfessorService;
+import com.quintoimpacto.mvc.service.professor.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

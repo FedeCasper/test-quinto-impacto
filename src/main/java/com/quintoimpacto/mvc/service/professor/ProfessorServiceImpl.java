@@ -1,4 +1,4 @@
-package com.quintoimpacto.mvc.service;
+package com.quintoimpacto.mvc.service.professor;
 
 import com.quintoimpacto.mvc.dto.UserDto;
 import com.quintoimpacto.mvc.model.Professor;

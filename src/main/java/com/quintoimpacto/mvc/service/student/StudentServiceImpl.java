@@ -1,4 +1,4 @@
-package com.quintoimpacto.mvc.service;
+package com.quintoimpacto.mvc.service.student;
 
 import com.quintoimpacto.mvc.dto.UserDto;
 import com.quintoimpacto.mvc.model.Student;
@@ -6,7 +6,6 @@ import com.quintoimpacto.mvc.model.User;
 import com.quintoimpacto.mvc.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Date;
 import java.util.List;
