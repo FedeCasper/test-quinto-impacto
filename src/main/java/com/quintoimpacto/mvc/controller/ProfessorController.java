@@ -2,6 +2,7 @@ package com.quintoimpacto.mvc.controller;
 
 import com.quintoimpacto.mvc.dto.UserDto;
 import com.quintoimpacto.mvc.model.Professor;
+import com.quintoimpacto.mvc.model.Student;
 import com.quintoimpacto.mvc.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,5 +34,11 @@ public class ProfessorController {
         professor.setId(id);
         Professor updatedProfessor = professorService.updateProfessor(professor);
         return updatedProfessor != null ? ResponseEntity.ok(updatedProfessor) : ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Professor> deleteProfessor (@PathVariable("id") Long id){
+        Professor deletedProfessor = professorService.deleteProfessorById(id);
+        return deletedProfessor != null ? ResponseEntity.ok(deletedProfessor) : ResponseEntity.notFound().build();
     }
 }
