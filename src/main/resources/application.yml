@@ -4,7 +4,7 @@ spring:
       mode: always
   jackson:
     serialization:
-      INDENT_OUTPUT: true
+      indent-output: true
   h2:
     console:
       enabled: true
