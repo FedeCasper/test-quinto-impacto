@@ -2,6 +2,9 @@ spring:
   sql:
     init:
       mode: always
+  jackson:
+    serialization:
+      indent-output: true
   h2:
     console:
       enabled: true
@@ -16,3 +19,4 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+

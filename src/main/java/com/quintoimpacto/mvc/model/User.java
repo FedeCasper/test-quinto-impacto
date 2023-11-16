@@ -1,10 +1,14 @@
 package com.quintoimpacto.mvc.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "tbl_users")
+@Getter @Setter
 public class User {
 
     @Id
