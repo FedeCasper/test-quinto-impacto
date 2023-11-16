@@ -14,6 +14,7 @@ public class UserDto {
     private String email;
     private String password;
     private String course;
+    private String departament;
 
     public UserDto() {
 
@@ -27,5 +28,6 @@ public class UserDto {
         this.password = password;
         this.course = course;
     }
+
 }
 

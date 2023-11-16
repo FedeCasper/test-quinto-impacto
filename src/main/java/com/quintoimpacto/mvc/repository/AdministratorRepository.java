@@ -1,4 +1,7 @@
 package com.quintoimpacto.mvc.repository;
 
-public interface AdministratorRepository {
+import com.quintoimpacto.mvc.model.Administrator;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AdministratorRepository extends JpaRepository<Administrator, Long> {
 }
