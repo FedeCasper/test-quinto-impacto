@@ -2,7 +2,6 @@ package com.quintoimpacto.mvc.controller;
 
 import com.quintoimpacto.mvc.dto.UserDto;
 import com.quintoimpacto.mvc.model.Administrator;
-import com.quintoimpacto.mvc.model.Professor;
 import com.quintoimpacto.mvc.service.administrator.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -36,4 +35,9 @@ public class AdministratorController {
         return updatedAdministrator != null ? ResponseEntity.ok(updatedAdministrator) : ResponseEntity.notFound().build();
     }
 
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Administrator> deleteAdministrator (@PathVariable("id") Long id){
+        Administrator deletedAdministrator = administratorService.deleteAdministratorById(id);
+        return deletedAdministrator != null ? ResponseEntity.ok(deletedAdministrator) : ResponseEntity.notFound().build();
+    }
 }
