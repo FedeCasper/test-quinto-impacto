@@ -70,9 +70,11 @@ public class ProfessorServiceImpl implements ProfessorService {
         if(foundProfessor == null){
             return null;
         }
+        foundProfessor.setName(professor.getName());
+        foundProfessor.setLastName(professor.getLastName());
+        foundProfessor.setEmail(professor.getEmail());
+        foundProfessor.setPassword(professor.getPassword());
         foundProfessor.setCourse(professor.getCourse());
-        foundProfessor.setStatus(professor.getStatus());
-        foundProfessor.setCreateAt(professor.getCreateAt());
         return professorRepository.save(foundProfessor);
     }
 }
