@@ -30,6 +30,12 @@ public class CourseController {
         return ResponseEntity.ok(newCourse);
     }
 
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Course> deleteCourse (@PathVariable("id") Long id){
+        Course deleteCourse = courseService.deleteCourse(id);
+        return deleteCourse != null ? ResponseEntity.ok(deleteCourse) : ResponseEntity.notFound().build();
+    }
+
     @PutMapping(value = "/{id}")
     public ResponseEntity <Course> updateCourse(@PathVariable("id") Long id, @RequestBody CourseDto courseDto){
         Course updatedCourse = courseService.updateCourse(id, courseDto);
