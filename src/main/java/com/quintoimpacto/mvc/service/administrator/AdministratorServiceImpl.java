@@ -18,12 +18,12 @@ public class AdministratorServiceImpl implements AdministratorService {
     private AdministratorRepository administratorRepository;
 
     @Override
-    public List<Administrator> findAll() {
+    public List<Administrator> getAllAdministrators() {
         return administratorRepository.findAll();
     }
 
     @Override
-    public Administrator findAdministratorById (Long id) {
+    public Administrator getAdministratorById (Long id) {
         return administratorRepository.findById(id).orElse(null);
     }
 
@@ -51,13 +51,13 @@ public class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
-    public void save(Administrator administrator) {
+    public void saveAdministrator(Administrator administrator) {
         administratorRepository.save(administrator);
     }
 
     @Override
     public Administrator deleteAdministratorById(Long id) {
-        Administrator foundAdministrator = findAdministratorById(id);
+        Administrator foundAdministrator = getAdministratorById(id);
         if(foundAdministrator == null){
             return null;
         }
@@ -67,7 +67,7 @@ public class AdministratorServiceImpl implements AdministratorService {
 
     @Override
     public Administrator updateAdministrator(Administrator administrator) {
-        Administrator foundAdministrator = findAdministratorById(administrator.getId());
+        Administrator foundAdministrator = getAdministratorById(administrator.getId());
         if(foundAdministrator == null){
             return null;
         }
@@ -79,4 +79,13 @@ public class AdministratorServiceImpl implements AdministratorService {
         return administratorRepository.save(foundAdministrator);
     }
 
+    @Override
+    public Administrator activateAdministrator(Long id) {
+        Administrator foundAdministrator = getAdministratorById(id);
+        if(foundAdministrator == null){
+            return null;
+        }
+        foundAdministrator.setStatus("active");
+        return administratorRepository.save(foundAdministrator);
+    }
 }

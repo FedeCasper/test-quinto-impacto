@@ -18,7 +18,7 @@ public class AdministratorController {
 
     @GetMapping
     public ResponseEntity<List<Administrator>> getAllAdministrators() {
-        List<Administrator> administratorList =  administratorService.findAll();
+        List<Administrator> administratorList =  administratorService.getAllAdministrators();
         return administratorList != null ? ResponseEntity.ok(administratorList) : ResponseEntity.notFound().build();
     }
 

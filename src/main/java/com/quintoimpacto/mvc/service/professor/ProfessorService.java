@@ -7,16 +7,18 @@ import java.util.List;
 
 public interface ProfessorService {
 
-    List<Professor> findAll();
+    List<Professor> getAllProfessors();
 
-    Professor findProfessorById(Long id);
+    Professor getProfessorById(Long id);
 
     Professor createProfessor(UserDto userDto);
 
-    void save(Professor professor);
+    void saveProfessor(Professor professor);
 
     Professor deleteProfessorById(Long id);
 
     Professor updateProfessor(Professor professor);
+
+    Professor activateProfessor(Long id);
 
 }

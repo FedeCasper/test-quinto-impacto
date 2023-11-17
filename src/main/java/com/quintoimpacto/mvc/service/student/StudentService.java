@@ -1,15 +1,16 @@
 package com.quintoimpacto.mvc.service.student;
 
 import com.quintoimpacto.mvc.dto.UserDto;
+import com.quintoimpacto.mvc.model.Professor;
 import com.quintoimpacto.mvc.model.Student;
 
 import java.util.List;
 
 public interface StudentService {
 
-    List<Student> findAll();
+    List<Student> getAllStudents();
 
-    Student findStudentById(Long id);
+    Student getStudentById(Long id);
 
     Student createStudent(UserDto userDto);
 
@@ -18,5 +19,7 @@ public interface StudentService {
     Student deleteStudentById(Long id);
 
     Student updateStudent(Student student);
+
+    Student activateStudent(Long id);
 
 }

@@ -2,6 +2,7 @@ package com.quintoimpacto.mvc.service.course;
 
 import com.quintoimpacto.mvc.dto.CourseDto;
 import com.quintoimpacto.mvc.model.Course;
+import com.quintoimpacto.mvc.model.Professor;
 
 import java.util.List;
 
@@ -13,7 +14,11 @@ public interface CourseService {
 
     Course createCourse(CourseDto courseDto);
 
+    void saveCourse(Course course);
+
     Course updateCourse(Long id, CourseDto courseDto);
 
-    void deleteCourse(Long id);
+    Course deleteCourse(Long id);
+
+    Course activateCourse(Long id);
 }

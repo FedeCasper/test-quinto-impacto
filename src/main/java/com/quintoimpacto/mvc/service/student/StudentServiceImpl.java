@@ -1,6 +1,7 @@
 package com.quintoimpacto.mvc.service.student;
 
 import com.quintoimpacto.mvc.dto.UserDto;
+import com.quintoimpacto.mvc.model.Professor;
 import com.quintoimpacto.mvc.model.Student;
 import com.quintoimpacto.mvc.model.User;
 import com.quintoimpacto.mvc.repository.StudentRepository;
@@ -17,12 +18,12 @@ public class StudentServiceImpl implements StudentService {
     private StudentRepository studentRepository;
 
     @Override
-    public List<Student> findAll() {
+    public List<Student> getAllStudents() {
         return studentRepository.findAll();
     }
 
     @Override
-    public Student findStudentById(Long id) {
+    public Student getStudentById(Long id) {
         return studentRepository.findById(id).orElse(null);
     }
 
@@ -61,7 +62,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student updateStudent (Student student) {
-        Student foundStudent = findStudentById(student.getId());
+        Student foundStudent = getStudentById(student.getId());
         if(foundStudent == null){
             return null;
         }
@@ -70,6 +71,16 @@ public class StudentServiceImpl implements StudentService {
         foundStudent.setEmail(student.getEmail());
         foundStudent.setPassword(student.getPassword());
         foundStudent.setCourse(student.getCourse());
+        return studentRepository.save(foundStudent);
+    }
+
+    @Override
+    public Student activateStudent(Long id) {
+        Student foundStudent = getStudentById(id);
+        if(foundStudent == null){
+            return null;
+        }
+        foundStudent.setStatus("active");
         return studentRepository.save(foundStudent);
     }
 }

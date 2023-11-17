@@ -12,5 +12,6 @@ public class CourseDto {
 
     private String name;
     private String shift;
+    private String status;
 
 }

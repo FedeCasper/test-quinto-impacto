@@ -1,6 +1,7 @@
 package com.quintoimpacto.mvc.service.professor;
 
 import com.quintoimpacto.mvc.dto.UserDto;
+import com.quintoimpacto.mvc.model.Course;
 import com.quintoimpacto.mvc.model.Professor;
 import com.quintoimpacto.mvc.model.User;
 import com.quintoimpacto.mvc.repository.ProfessorRepository;
@@ -17,12 +18,12 @@ public class ProfessorServiceImpl implements ProfessorService {
     private ProfessorRepository professorRepository;
 
     @Override
-    public List<Professor> findAll() {
+    public List<Professor> getAllProfessors() {
         return professorRepository.findAll();
     }
 
     @Override
-    public Professor findProfessorById(Long id) {
+    public Professor getProfessorById(Long id) {
         return professorRepository.findById(id).orElse(null);
     }
 
@@ -50,13 +51,13 @@ public class ProfessorServiceImpl implements ProfessorService {
     }
 
     @Override
-    public void save(Professor professor) {
+    public void saveProfessor(Professor professor) {
         professorRepository.save(professor);
     }
 
     @Override
     public Professor deleteProfessorById(Long id) {
-        Professor foundProfessor = findProfessorById(id);
+        Professor foundProfessor = getProfessorById(id);
         if(foundProfessor == null){
             return null;
         }
@@ -66,7 +67,7 @@ public class ProfessorServiceImpl implements ProfessorService {
 
     @Override
     public Professor updateProfessor(Professor professor) {
-        Professor foundProfessor = findProfessorById(professor.getId());
+        Professor foundProfessor = getProfessorById(professor.getId());
         if(foundProfessor == null){
             return null;
         }
@@ -75,6 +76,16 @@ public class ProfessorServiceImpl implements ProfessorService {
         foundProfessor.setEmail(professor.getEmail());
         foundProfessor.setPassword(professor.getPassword());
         foundProfessor.setCourse(professor.getCourse());
+        return professorRepository.save(foundProfessor);
+    }
+
+    @Override
+    public Professor activateProfessor(Long id) {
+        Professor foundProfessor = getProfessorById(id);
+        if(foundProfessor == null){
+            return null;
+        }
+        foundProfessor.setStatus("active");
         return professorRepository.save(foundProfessor);
     }
 }

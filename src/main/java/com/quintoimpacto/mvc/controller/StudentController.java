@@ -18,7 +18,7 @@ public class StudentController {
 
     @GetMapping
     public ResponseEntity<List<Student>> getAllStudents() {
-        List<Student> studentList =  studentService.findAll();
+        List<Student> studentList =  studentService.getAllStudents();
         return studentList != null ? ResponseEntity.ok(studentList) : ResponseEntity.notFound().build();
     }
 
@@ -39,5 +39,11 @@ public class StudentController {
     public ResponseEntity<Student> deleteStudent (@PathVariable("id") Long id){
         Student deletedStudent = studentService.deleteStudentById(id);
         return deletedStudent != null ? ResponseEntity.ok(deletedStudent) : ResponseEntity.notFound().build();
+    }
+
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity<Student> activateStudent (@PathVariable("id") Long id){
+        Student activatedStudent = studentService.activateStudent(id);
+        return activatedStudent != null ? ResponseEntity.ok(activatedStudent) : ResponseEntity.notFound().build();
     }
 }
