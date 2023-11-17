@@ -1,5 +1,8 @@
 package com.quintoimpacto.mvc.controller;
 
+import com.quintoimpacto.mvc.dto.CourseDto;
+import com.quintoimpacto.mvc.dto.UserDto;
+import com.quintoimpacto.mvc.model.Administrator;
 import com.quintoimpacto.mvc.model.Course;
 import com.quintoimpacto.mvc.service.course.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,12 @@ public class CourseController {
     public ResponseEntity<List<Course>> getAllCourses() {
         List<Course> courseList =  courseService.getAllCourses();
         return courseList != null ? ResponseEntity.ok(courseList) : ResponseEntity.notFound().build();
+    }
+
+    @PostMapping
+    public ResponseEntity<Course> createCourse (@RequestBody CourseDto courseDto) {
+        Course newCourse = courseService.createCourse(courseDto);
+        return ResponseEntity.ok(newCourse);
     }
 
     @PatchMapping(value = "/{id}")

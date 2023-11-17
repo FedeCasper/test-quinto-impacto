@@ -32,7 +32,7 @@ public class CourseServiceImpl implements CourseService {
         Course course = new Course();
         course.setName(courseDto.getName());
         course.setShift(courseDto.getShift());
-        course.setStatus(courseDto.getStatus());
+        course.setStatus("active");
         return courseRepository.save(course);
     }
 
