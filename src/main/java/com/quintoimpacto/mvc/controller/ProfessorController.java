@@ -42,4 +42,9 @@ public class ProfessorController {
         return deletedProfessor != null ? ResponseEntity.ok(deletedProfessor) : ResponseEntity.notFound().build();
     }
 
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity<Professor> activateStudent (@PathVariable("id") Long id){
+        Professor activatedProfessor = professorService.activateProfessor(id);
+        return activatedProfessor != null ? ResponseEntity.ok(activatedProfessor) : ResponseEntity.notFound().build();
+    }
 }
