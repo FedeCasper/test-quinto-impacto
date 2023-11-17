@@ -49,7 +49,6 @@ public class CourseServiceImpl implements CourseService {
         }
         foundCourse.setName(courseDto.getName());
         foundCourse.setShift(courseDto.getShift());
-        foundCourse.setStatus(courseDto.getStatus());
         return courseRepository.save(foundCourse);
     }
 
