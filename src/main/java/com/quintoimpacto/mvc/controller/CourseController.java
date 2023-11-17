@@ -30,6 +30,12 @@ public class CourseController {
         return ResponseEntity.ok(newCourse);
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity <Course> updateCourse(@PathVariable("id") Long id, @RequestBody CourseDto courseDto){
+        Course updatedCourse = courseService.updateCourse(id, courseDto);
+        return updatedCourse != null ? ResponseEntity.ok(updatedCourse) : ResponseEntity.notFound().build();
+    }
+
     @PatchMapping(value = "/{id}")
     public ResponseEntity<Course> activateCourse (@PathVariable("id") Long id){
         Course activatedCourse = courseService.activateCourse(id);
