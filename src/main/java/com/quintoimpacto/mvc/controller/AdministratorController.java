@@ -18,7 +18,7 @@ public class AdministratorController {
 
     @GetMapping
     public ResponseEntity<List<Administrator>> getAllAdministrators() {
-        List<Administrator> administratorList =  administratorService.findAll();
+        List<Administrator> administratorList =  administratorService.getAllAdministrators();
         return administratorList != null ? ResponseEntity.ok(administratorList) : ResponseEntity.notFound().build();
     }
 
@@ -39,5 +39,11 @@ public class AdministratorController {
     public ResponseEntity<Administrator> deleteAdministrator (@PathVariable("id") Long id){
         Administrator deletedAdministrator = administratorService.deleteAdministratorById(id);
         return deletedAdministrator != null ? ResponseEntity.ok(deletedAdministrator) : ResponseEntity.notFound().build();
+    }
+
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity<Administrator> activateAdministrator(@PathVariable("id") Long id){
+        Administrator activatedAdministrator = administratorService.activateAdministrator(id);
+        return activatedAdministrator != null ? ResponseEntity.ok(activatedAdministrator) : ResponseEntity.notFound().build();
     }
 }
