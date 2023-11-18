@@ -52,7 +52,6 @@ public class AuthenticationConfig extends GlobalAuthenticationConfigurerAdapter 
                 }
                 return new User(user.getEmail(), user.getPassword(),
                         AuthorityUtils.createAuthorityList(authority));
-
             }
             else {
                 throw new UsernameNotFoundException("Unknown user: " + inputName);

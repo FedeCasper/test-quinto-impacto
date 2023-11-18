@@ -19,9 +19,9 @@ public class AuthorizationConfig {
 
     @Bean
     public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-
-                .antMatchers( "/h2-console/**").hasAuthority("ADMIN")
+        http
+            .authorizeRequests()
+                //.antMatchers( "/h2-console/**").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/administrators/**", "/professors/**", "/students/**", "/courses/**").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.POST, "/administrators/**", "/professors/**", "/courses/**").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.PUT, "/administrators/**", "/courses/**").hasAuthority("ADMIN")
@@ -31,7 +31,10 @@ public class AuthorizationConfig {
                 .antMatchers(HttpMethod.PUT, "/students/**", "/professors/**").hasAnyAuthority("ADMIN", "PROFESSOR")
                 .antMatchers(HttpMethod.PATCH, "/students/**").hasAnyAuthority("ADMIN", "PROFESSOR")
                 .antMatchers(HttpMethod.GET, "/students/**", "/professors/**", "/courses/**").hasAnyAuthority("ADMIN", "PROFESSOR")
-                .antMatchers(HttpMethod.GET, "/courses/**").permitAll();
+                .antMatchers(HttpMethod.GET, "/courses/**").permitAll()
+                .antMatchers( HttpMethod.POST, "/users/**").permitAll()
+                .antMatchers( "/users/**").permitAll();
+
 
         http.formLogin()
                 .usernameParameter("email")
@@ -41,10 +44,9 @@ public class AuthorizationConfig {
         http.logout().logoutUrl("/logout");
 
         http.sessionManagement()
-                .invalidSessionUrl("/404.html")
-                .maximumSessions(3)
-                .maxSessionsPreventsLogin(true)
-                .expiredUrl("/index.html");
+            .maximumSessions(3)
+            .maxSessionsPreventsLogin(true)
+            .expiredUrl("/sessionExpired");
 
         // desactivar la comprobación de tokens CSRF
         http.csrf().disable();

@@ -1,5 +1,7 @@
 package com.quintoimpacto.mvc.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.quintoimpacto.mvc.rol.UserRol;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -7,14 +9,18 @@ import javax.persistence.Column;
 @Getter @Setter
 public class UserDto {
 
+    @JsonIgnore
     private Long id;
     private String name;
-    @Column(name = "last_name")
     private String lastName;
     private String email;
     private String password;
+
+    @JsonIgnore
     private String course;
+    @JsonIgnore
     private String departament;
+    private UserRol userRol;
 
     public UserDto() {
 
@@ -28,6 +34,7 @@ public class UserDto {
         this.password = password;
         this.course = course;
     }
+
 
 }
 
