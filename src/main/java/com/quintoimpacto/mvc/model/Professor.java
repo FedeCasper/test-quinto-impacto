@@ -1,5 +1,6 @@
 package com.quintoimpacto.mvc.model;
 
+import com.quintoimpacto.mvc.rol.UserRol;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +16,10 @@ public class Professor extends User {
 
     private String course;
     private String status;
+
+    @Column(name = "user_rol")
+    @Enumerated(EnumType.STRING)
+    private UserRol userRol = UserRol.PROFESSOR;
 
     @Column(name = "create_at")
     @Temporal(TemporalType.DATE)
