@@ -7,6 +7,7 @@ import com.quintoimpacto.mvc.model.Student;
 import com.quintoimpacto.mvc.model.User;
 import com.quintoimpacto.mvc.repository.UserRepository;
 import com.quintoimpacto.mvc.rol.UserRol;
+import com.quintoimpacto.mvc.service.user.UserService;
 import com.quintoimpacto.mvc.util.UserDtoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ import java.util.Date;
 public class UserController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -52,7 +53,7 @@ public class UserController {
                         return null;
                 }
 
-                userRepository.save(createdUser);
+                userService.saveUser(createdUser);
                 return ResponseEntity.ok(createdUser);
 
             } else {
