@@ -1,5 +1,6 @@
 package com.quintoimpacto.mvc.controller;
 
+import com.quintoimpacto.mvc.dto.StudentDto;
 import com.quintoimpacto.mvc.dto.UserDto;
 import com.quintoimpacto.mvc.model.Student;
 import com.quintoimpacto.mvc.service.student.StudentService;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/students")
@@ -17,9 +19,9 @@ public class StudentController {
     private StudentService studentService;
 
     @GetMapping
-    public ResponseEntity<List<Student>> getAllStudents() {
-        List<Student> studentList =  studentService.getAllStudents();
-        return studentList != null ? ResponseEntity.ok(studentList) : ResponseEntity.notFound().build();
+    public ResponseEntity<List<StudentDto>> getAllStudents() {
+        List<StudentDto> studentList =  studentService.getAllStudents().stream().map(StudentDto::new).collect(Collectors.toList());
+        return ResponseEntity.ok(studentList);
     }
 
     @PostMapping

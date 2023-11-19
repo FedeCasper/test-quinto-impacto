@@ -3,6 +3,7 @@ package com.quintoimpacto.mvc.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "tbl_user_course")
@@ -25,18 +26,25 @@ public class UserCourse {
     @JoinColumn(name = "course_id")
     private Course course;
 
+    @Column(name = "create_at")
+    @Temporal(TemporalType.DATE)
+    private Date createAt;
+
     public UserCourse() {
 
     }
 
-    public UserCourse(Student student, Course course) {
+    public UserCourse(Student student, Course course, Date createAt) {
         this.student = student;
         this.course = course;
+        this.createAt = createAt;
     }
 
-    public UserCourse(Professor professor, Course course) {
+    public UserCourse(Professor professor, Course course, Date createAt) {
         this.professor = professor;
         this.course = course;
+        this.createAt = createAt;
     }
+
 
 }

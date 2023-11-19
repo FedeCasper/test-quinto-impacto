@@ -5,7 +5,7 @@ import org.springframework.security.core.Authentication;
 
 public interface UserService {
 
-    public void saveUser(User user);
+    void saveUser(User user);
 
-    public User getCurrentUser(Authentication authentication);
+    User getCurrentUser(Authentication authentication);
 }

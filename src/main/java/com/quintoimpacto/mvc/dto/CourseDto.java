@@ -1,17 +1,15 @@
 package com.quintoimpacto.mvc.dto;
 
-import lombok.*;
-import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter @Setter
 public class CourseDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     private String name;
     private String shift;
     private String status;
+
+    public CourseDto() {}
 
 }

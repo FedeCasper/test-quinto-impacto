@@ -25,7 +25,7 @@ public class Student extends User{
     @Temporal(TemporalType.DATE)
     private Date createAt;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
     private List<UserCourse> userCourses = new ArrayList<>();
 
     public Student() {
