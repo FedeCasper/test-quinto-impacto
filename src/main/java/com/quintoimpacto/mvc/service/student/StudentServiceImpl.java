@@ -28,6 +28,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public Student getStudentByEmail(String email) {
+        return studentRepository.findByEmail(email);
+    }
+
+    @Override
     public Student createStudent(UserDto userDto) {
         if(userDto == null){
             return null;
@@ -38,7 +43,6 @@ public class StudentServiceImpl implements StudentService {
                 newUser.getLastName(),
                 newUser.getEmail(),
                 newUser.getPassword(),
-                userDto.getCourse(),
                 "active",
                 new Date()
         );
@@ -70,7 +74,6 @@ public class StudentServiceImpl implements StudentService {
         foundStudent.setLastName(student.getLastName());
         foundStudent.setEmail(student.getEmail());
         foundStudent.setPassword(student.getPassword());
-        foundStudent.setCourse(student.getCourse());
         return studentRepository.save(foundStudent);
     }
 

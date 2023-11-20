@@ -1,15 +1,19 @@
 package com.quintoimpacto.mvc.controller;
 
 import com.quintoimpacto.mvc.dto.CourseDto;
-import com.quintoimpacto.mvc.dto.UserDto;
-import com.quintoimpacto.mvc.model.Administrator;
-import com.quintoimpacto.mvc.model.Course;
+import com.quintoimpacto.mvc.dto.CourseRequestDto;
+import com.quintoimpacto.mvc.model.*;
 import com.quintoimpacto.mvc.service.course.CourseService;
+import com.quintoimpacto.mvc.service.user.UserService;
+import com.quintoimpacto.mvc.service.userCourse.UserCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/courses")
@@ -18,10 +22,12 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
+
     @GetMapping
-    public ResponseEntity<List<Course>> getAllCourses() {
-        List<Course> courseList =  courseService.getAllCourses();
-        return courseList != null ? ResponseEntity.ok(courseList) : ResponseEntity.notFound().build();
+    public ResponseEntity<List<CourseDto>> getAllCourses() {
+        List<Course> courses = courseService.getAllCourses();
+        List<CourseDto> courseDtos = courses.stream().map(CourseDto::new).collect(Collectors.toList());
+        return ResponseEntity.ok(courseDtos);
     }
 
     @PostMapping
@@ -47,4 +53,5 @@ public class CourseController {
         Course activatedCourse = courseService.activateCourse(id);
         return activatedCourse != null ? ResponseEntity.ok(activatedCourse) : ResponseEntity.notFound().build();
     }
+
 }

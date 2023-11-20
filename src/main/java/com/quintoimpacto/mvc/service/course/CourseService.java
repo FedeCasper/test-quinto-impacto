@@ -1,8 +1,8 @@
 package com.quintoimpacto.mvc.service.course;
 
 import com.quintoimpacto.mvc.dto.CourseDto;
+import com.quintoimpacto.mvc.dto.CourseRequestDto;
 import com.quintoimpacto.mvc.model.Course;
-import com.quintoimpacto.mvc.model.Professor;
 
 import java.util.List;
 
@@ -11,6 +11,8 @@ public interface CourseService {
     List<Course> getAllCourses();
 
     Course getCourseById(Long id);
+
+    Course getCourseByName(String name);
 
     Course createCourse(CourseDto courseDto);
 

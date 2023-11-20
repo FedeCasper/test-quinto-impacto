@@ -19,7 +19,7 @@ public class Course {
     private String shift;
     private String status;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
     private List<UserCourse> userCourses = new ArrayList<>();
 
     public Course() {

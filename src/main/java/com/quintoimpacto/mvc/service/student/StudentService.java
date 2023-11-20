@@ -12,6 +12,8 @@ public interface StudentService {
 
     Student getStudentById(Long id);
 
+    Student getStudentByEmail(String email);
+
     Student createStudent(UserDto userDto);
 
     Student save(Student student);

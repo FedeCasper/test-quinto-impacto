@@ -1,5 +1,6 @@
 package com.quintoimpacto.mvc.service.course;
 
+
 import com.quintoimpacto.mvc.dto.CourseDto;
 import com.quintoimpacto.mvc.model.Course;
 import com.quintoimpacto.mvc.repository.CourseRepository;
@@ -70,5 +71,10 @@ public class CourseServiceImpl implements CourseService {
         }
         foundCourse.setStatus("active");
         return courseRepository.save(foundCourse);
+    }
+
+    @Override
+    public Course getCourseByName(String name) {
+        return courseRepository.findCourseByName(name);
     }
 }
