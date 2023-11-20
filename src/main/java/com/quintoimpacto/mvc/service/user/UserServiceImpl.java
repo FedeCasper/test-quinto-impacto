@@ -21,4 +21,9 @@ public class UserServiceImpl implements UserService {
     public User getCurrentUser(Authentication authentication) {
         return userRepository.findByEmail(authentication.getName());
     }
+
+    @Override
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 }

@@ -21,20 +21,20 @@ public class AuthorizationConfig {
     public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                //.antMatchers( "/h2-console/**").hasAuthority("ADMIN")
+                .antMatchers( "/h2-console/**").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/administrators/**", "/professors/**", "/students/**", "/courses/**").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.POST, "/administrators/**", "/professors/**", "/courses").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.PUT, "/administrators/**", "/courses/**").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.GET, "/administrators/**").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.PATCH, "/administrators/**", "/professors/**", "/courses/**").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/students/user_course").hasAuthority("STUDENT")
                 .antMatchers(HttpMethod.POST, "/students").hasAnyAuthority("ADMIN", "PROFESSOR")
                 .antMatchers(HttpMethod.PUT, "/students/**", "/professors/**").hasAnyAuthority("ADMIN", "PROFESSOR")
                 .antMatchers(HttpMethod.PATCH, "/students/**").hasAnyAuthority("ADMIN", "PROFESSOR")
                 .antMatchers(HttpMethod.GET, "/students/**", "/professors/**", "/courses/**").hasAnyAuthority("ADMIN", "PROFESSOR")
-                .antMatchers(HttpMethod.POST, "/courses/user_course").hasAnyAuthority("STUDENT", "PROFESSOR")
                 .antMatchers(HttpMethod.GET, "/courses/**").permitAll()
                 .antMatchers( HttpMethod.POST, "/users/**").permitAll()
-                .antMatchers( "/users/**").permitAll();
+                .antMatchers( "/users/**", "/web/**").permitAll();
 
 
         http.formLogin()

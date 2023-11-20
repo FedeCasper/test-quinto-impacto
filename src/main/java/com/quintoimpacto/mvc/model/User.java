@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -20,6 +21,7 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+
 
     public User() {
 

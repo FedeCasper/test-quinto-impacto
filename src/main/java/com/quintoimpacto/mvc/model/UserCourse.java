@@ -35,7 +35,7 @@ public class UserCourse {
     }
 
     public UserCourse(Student student, Course course, Date createAt) {
-        this.student = student;
+        this.student =  student;
         this.course = course;
         this.createAt = createAt;
     }

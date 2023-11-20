@@ -19,7 +19,6 @@ public class StudentDto {
     private String lastName;
     private String email;
     private String password;
-    private String course;
     private String status;
     private UserRol userRol = UserRol.STUDENT;
     private Date createAt;
@@ -33,7 +32,6 @@ public class StudentDto {
         this.lastName = student.getLastName();
         this.email = student.getEmail();
         this.password = student.getPassword();
-        this.course = student.getCourse();
         this.status = student.getStatus();
         this.userRol = student.getUserRol();
         this.createAt = student.getCreateAt();

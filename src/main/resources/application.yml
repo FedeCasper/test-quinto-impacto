@@ -5,6 +5,9 @@ spring:
   jackson:
     serialization:
       indent-output: true
+  devtools:
+    restart:
+      enabled: true
   h2:
     console:
       enabled: true

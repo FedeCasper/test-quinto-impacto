@@ -1,10 +1,12 @@
 package com.quintoimpacto.mvc.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.quintoimpacto.mvc.model.User;
 import com.quintoimpacto.mvc.rol.UserRol;
 import lombok.*;
 
 import javax.persistence.Column;
+import java.util.List;
 
 @Getter @Setter
 public class UserDto {
@@ -22,17 +24,18 @@ public class UserDto {
     private String departament;
     private UserRol userRol;
 
+    List<UserCourseDto> userCourses;
+
     public UserDto() {
 
     }
 
-    public UserDto(Long id, String name, String lastName, String email, String password, String course) {
-        this.id = id;
-        this.name = name;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.course = course;
+    public UserDto(User user) {
+        this.id = user.getId();
+        this.name = user.getName();
+        this.lastName = user.getLastName();
+        this.email = user.getEmail();
+        this.password = user.getPassword();
     }
 
 

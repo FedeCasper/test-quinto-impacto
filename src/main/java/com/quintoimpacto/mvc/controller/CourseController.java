@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/courses")
@@ -21,17 +22,12 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private UserCourseService userCourseService;
-
 
     @GetMapping
-    public ResponseEntity<List<Course>> getAllCourses() {
-        List<Course> courseList =  courseService.getAllCourses();
-        return courseList != null ? ResponseEntity.ok(courseList) : ResponseEntity.notFound().build();
+    public ResponseEntity<List<CourseDto>> getAllCourses() {
+        List<Course> courses = courseService.getAllCourses();
+        List<CourseDto> courseDtos = courses.stream().map(CourseDto::new).collect(Collectors.toList());
+        return ResponseEntity.ok(courseDtos);
     }
 
     @PostMapping
@@ -58,22 +54,4 @@ public class CourseController {
         return activatedCourse != null ? ResponseEntity.ok(activatedCourse) : ResponseEntity.notFound().build();
     }
 
-    @PostMapping("user_course")
-    public ResponseEntity<UserCourse> createUserCourse (@RequestBody CourseRequestDto courseRequestDto, Authentication authentication) {
-
-        User currentUser = userService.getCurrentUser(authentication);
-        Course selectedCourse = courseService.getCourseByName(courseRequestDto.getCourseName());
-
-        UserCourse userCourse = new UserCourse();
-        if(authentication.getAuthorities().toString().contains("STUDENT")) {
-            userCourse =new UserCourse((Student) currentUser, selectedCourse, new Date());
-        } else if(authentication.getAuthorities().toString().contains("PROFESSOR")) {
-            userCourse = new UserCourse((Professor) currentUser, selectedCourse, new Date());
-        } else {
-            throw new RuntimeException("Invalid user role");
-        }
-
-        userCourseService.saveUserCourse(userCourse);
-        return ResponseEntity.ok(userCourse);
-    }
 }
