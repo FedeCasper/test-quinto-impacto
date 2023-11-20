@@ -200,7 +200,7 @@ margin-top: 2rem;
 /*------------------------------------ Accounts ------------------------------------*/
 main{
      flex-grow: 1;
-     height: 80%;
+     /* height: 80%; */
 }
 .stripe-header{
      width: 100%;

@@ -57,8 +57,8 @@ Vue.createApp({
                })
                .then((result) => {
                     if (result.isConfirmed) {   
-                         axios.post('/api/logout')
-                         .then(window.location.href = '/web/index.html')
+                         axios.post('/logout')
+                         .then(window.location.href = '/index.html')
                     }
                })
                .catch( error => error.message + "Oops! something happened, you couldn't log out" )

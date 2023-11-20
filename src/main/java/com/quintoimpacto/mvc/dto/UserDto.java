@@ -38,6 +38,19 @@ public class UserDto {
         this.password = user.getPassword();
     }
 
-
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", course='" + course + '\'' +
+                ", departament='" + departament + '\'' +
+                ", userRol=" + userRol +
+                ", userCourses=" + userCourses +
+                '}';
+    }
 }
 

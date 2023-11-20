@@ -65,7 +65,7 @@ public class StudentController {
     }
 
     @PostMapping("user_course")
-    public ResponseEntity<UserCourse> createUserCourse (@RequestBody CourseRequestDto courseRequestDto, Authentication authentication) {
+    public ResponseEntity<UserCourse> createStudentUserCourse (@RequestBody CourseRequestDto courseRequestDto, Authentication authentication) {
 
         User currentUser = userService.getCurrentUser(authentication);
         Course selectedCourse = courseService.getCourseByName(courseRequestDto.getCourseName());

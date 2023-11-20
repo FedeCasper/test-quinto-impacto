@@ -105,8 +105,9 @@ createApp({
                     console.log(this.rol)
                     if(this.rol == 'STUDENT'){
                          window.location.href = '/usersDashboard.html'
-                    }else if(this.role == 'ADMIN'){
+                    }else if(this.rol == 'ADMIN'){
                          window.location.href = '/admin-panel.html'
+                         console.log("entre");
                     }
           })},
 

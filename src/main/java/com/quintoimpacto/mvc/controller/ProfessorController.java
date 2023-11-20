@@ -1,12 +1,18 @@
 package com.quintoimpacto.mvc.controller;
 
+import com.quintoimpacto.mvc.dto.CourseRequestDto;
 import com.quintoimpacto.mvc.dto.UserDto;
-import com.quintoimpacto.mvc.model.Professor;
+import com.quintoimpacto.mvc.model.*;
+import com.quintoimpacto.mvc.service.course.CourseService;
 import com.quintoimpacto.mvc.service.professor.ProfessorService;
+import com.quintoimpacto.mvc.service.user.UserService;
+import com.quintoimpacto.mvc.service.userCourse.UserCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -15,6 +21,15 @@ public class ProfessorController {
 
     @Autowired
     private ProfessorService professorService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private UserCourseService userCourseService;
+
+    @Autowired
+    private CourseService courseService;
 
     @GetMapping
     public ResponseEntity<List<Professor>> getAllProfessors() {
@@ -45,5 +60,28 @@ public class ProfessorController {
     public ResponseEntity<Professor> activateStudent (@PathVariable("id") Long id){
         Professor activatedProfessor = professorService.activateProfessor(id);
         return activatedProfessor != null ? ResponseEntity.ok(activatedProfessor) : ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("user_course")
+    public ResponseEntity<UserCourse> createStudentUserCourse (@RequestBody CourseRequestDto courseRequestDto, Authentication authentication) {
+
+        User currentUser = userService.getCurrentUser(authentication);
+        Course selectedCourse = courseService.getCourseByName(courseRequestDto.getCourseName());
+
+        UserCourse userCourse = new UserCourse();
+        if(authentication.getAuthorities().toString().contains("PROFESSOR")) {
+            Professor professor = (Professor) currentUser;
+            if (professor.getUserCourses().stream().anyMatch( uc -> uc.getCourse().getName().equals(selectedCourse.getName())
+                    && uc.getCourse().getShift().equals(selectedCourse.getShift()))
+            ) {
+                throw new RuntimeException("Professor already enrolled in this shift");
+            }
+            userCourse = new UserCourse((Professor) currentUser, selectedCourse, new Date());
+        } else {
+            throw new RuntimeException("Invalid user role");
+        }
+
+        userCourseService.saveUserCourse(userCourse);
+        return ResponseEntity.ok(userCourse);
     }
 }
